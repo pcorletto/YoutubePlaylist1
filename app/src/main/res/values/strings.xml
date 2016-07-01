@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">YoutubePlaylist1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_title1">Top 10 YouTube</string>
+    <string name="main_title2">Video PlayList</string>
+    <string name="add_vid_btn">Add Video</string>
+    <string name="view_playlist_btn">View PlayList</string>
+    <string name="store_title">Add a Video Activity</string>
+    <string name="video_title_lbl">Video/Song Title</string>
+    <string name="author_lbl">Author/Singer</string>
+    <string name="year_lbl">Year Produced</string>
+    <string name="video_id_lbl">YouTube Video ID</string>
+    <string name="rank_lbl">Your Ranking is (1-10)</string>
+
+
+</resources>
