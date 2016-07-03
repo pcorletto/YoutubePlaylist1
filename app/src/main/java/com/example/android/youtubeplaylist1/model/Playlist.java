@@ -10,16 +10,16 @@ public class Playlist {
     // SQLite database of videos you store. In VideoList, a user can store
     // as many videos as he or she likes. However, Playlist only gets the favorite 10.
 
-    public VideoItem[] mVideoItems = new VideoItem[10];
+    public VideoItem[] mVideoItem = new VideoItem[10];
 
     public void addVideoItem(VideoItem videoItem, int rowNumber){
 
-        mVideoItems[rowNumber] = videoItem;
+        mVideoItem[rowNumber] = videoItem;
 
     }
 
     public String getVideoItem(int i){
-        return mVideoItems[i].getTitle() +
-                " " + mVideoItems[i].getAuthor()+ "\n\n";
+        return mVideoItem[i].getTitle() +
+                " " + mVideoItem[i].getAuthor()+ "\n\n";
     }
 }

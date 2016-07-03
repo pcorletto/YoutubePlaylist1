@@ -1,18 +1,61 @@
 package com.example.android.youtubeplaylist1.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.android.youtubeplaylist1.R;
 
 public class MainActivity extends ActionBarActivity {
 
+    private Button storeVideoButton, displayPlaylistButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        storeVideoButton = (Button) findViewById(R.id.storeVideoButton);
+        displayPlaylistButton = (Button) findViewById(R.id.displayPlaylistButton);
+
+        // When the storeVideoButton is clicked, the StoreActivity is invoked.
+
+        storeVideoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, StoreActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+
+        // When the displayPlaylistButton is clicked, the DisplayActivity is invoked.
+
+        //displayPlaylistButton.setOnClickListener(new View.OnClickListener() {
+            //@Override
+            //public void onClick(View v) {
+
+          //      Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+
+                // Next, I will pass in the array of shopping items, mShoppingList, a "Keeper" object
+                // to DisplayShoppingList.java
+
+
+              //  intent.putExtra(getString(R.string.ROW_NUMBER), mRowNumber);
+
+                //intent.putExtra(getString(R.string.VIDEO_LIST), mShoppingList.mShoppingItems);
+
+                //startActivity(intent);
+
+            //}
+        //});
+
     }
 
 

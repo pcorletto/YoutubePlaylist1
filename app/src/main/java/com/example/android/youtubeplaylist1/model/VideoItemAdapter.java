@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.youtubeplaylist1.R;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class VideoItemAdapter extends ArrayAdapter<VideoItem> {
     private Context mContext;
 
     public VideoItemAdapter(Context context, List<VideoItem> list) {
-        super(context, R.layout.shopping_list_item, list);
+        super(context, R.layout.video_list_item, list);
         this.mContext = context;
         this.list = list;
 
@@ -60,19 +60,18 @@ public class VideoItemAdapter extends ArrayAdapter<VideoItem> {
 
         VideoItem videoItem = list.get(position);
 
-        if(convertView==null){
+        if(convertView == null){
             //brand new
-            convertView = LayoutInflater.from(mContext).inflate(R.layout.shopping_list_item, null);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.video_list_item, null);
 
             holder = new ViewHolder();
             holder.checkBox = (CheckBox) convertView.findViewById(R.id.checkBox);
-            holder.decrementButton = (Button) convertView.findViewById(R.id.decrementButton);
-            holder.incrementButton = (Button) convertView.findViewById(R.id.incrementButton);
-            holder.quantityEditText = (TextView) convertView.findViewById(R.id.quantityEditText);
-            holder.productNameEditText = (TextView) convertView.findViewById(R.id.productNameEditText);
-            holder.unitPriceEditText = (TextView) convertView.findViewById(R.id.unitPriceEditText);
-            holder.categoryEditText = (TextView) convertView.findViewById(R.id.categoryEditText);
-            holder.subtotalEditText = (TextView) convertView.findViewById(R.id.subtotalEditText);
+            holder.rankEditText = (EditText) convertView.findViewById(R.id.rankEditText);
+            holder.titleTextView = (TextView) convertView.findViewById(R.id.titleTextView);
+            holder.authorTextView = (TextView) convertView.findViewById(R.id.authorTextView);
+            holder.yearTextView = (TextView) convertView.findViewById(R.id.yearTextView);
+            holder.videoIDTextView = (TextView) convertView.findViewById(R.id.videoIDTextView);
+            holder.playButton = (Button) convertView.findViewById(R.id.playButton);
 
             convertView.setTag(holder);
 
@@ -87,83 +86,24 @@ public class VideoItemAdapter extends ArrayAdapter<VideoItem> {
 
         // Now, set the data:
 
-        DecimalFormat df = new DecimalFormat("$0.00");
+        holder.rank = this.getItem(position).getRank();
+        holder.title = this.getItem(position).getTitle();
+        holder.author = this.getItem(position).getAuthor();
+        holder.year = this.getItem(position).getYear();
+        holder.videoID = this.getItem(position).getVideoID();
 
-        holder.quantity = this.getItem(position).getQuantity();
-        holder.productName = this.getItem(position).getProductName();
-        holder.itemPrice = this.getItem(position).getItemPrice();
-        holder.category = this.getItem(position).getCategory();
-        holder.subtotal = this.getItem(position).getSubtotal();
+        holder.rankEditText.setText(holder.rank + "");
+        holder.titleTextView.setText(holder.title);
+        holder.authorTextView.setText(holder.author);
+        holder.yearTextView.setText(holder.year + "");
+        holder.videoIDTextView.setText(holder.videoID);
 
-        holder.quantityEditText.setText(holder.quantity + "");
-        holder.productNameEditText.setText(holder.productName);
-        holder.unitPriceEditText.setText(df.format(holder.itemPrice));
-        holder.categoryEditText.setText(holder.category);
-        holder.subtotalEditText.setText(df.format(holder.subtotal));
-
-        holder.decrementButton.setOnClickListener(new View.OnClickListener() {
+        holder.playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                holder.quantity--;
-
-                // Only accept positive values for the quantity
-                if (holder.quantity > 0)
-
-                {
-                    holder.quantityEditText.setText(holder.quantity + "");
-
-                    list.get(position).setQuantity(holder.quantity);
-
-                    // Some more logic here to refresh subtotal
-
-                    DecimalFormat df = new DecimalFormat("$0.00");
-
-                    holder.subtotal = holder.quantity * holder.itemPrice;
-
-                    holder.subtotalEditText.setText(df.format(holder.subtotal));
-
-                    list.get(position).setSubtotal(holder.subtotal);
-                   
-                } else {
-
-                    // Put the quantity back to where it was.
-                    holder.quantity++;
-                }
-
-            }
-        });
-
-        holder.incrementButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                holder.quantity++;
-
-                // Only accept positive values for the quantity
-                if(holder.quantity > 0) {
-
-                    holder.quantityEditText.setText(holder.quantity + "");
-
-                    list.get(position).setQuantity(holder.quantity);
-
-                    // Some more logic here to refresh subtotal
-
-                    DecimalFormat df = new DecimalFormat("$0.00");
-
-                    holder.subtotal = holder.quantity * holder.itemPrice;
-
-                    holder.subtotalEditText.setText(df.format(holder.subtotal));
-
-                    list.get(position).setSubtotal(holder.subtotal);
-
-                }
-
-                else{
-
-                    // Put the quantity back to where it was.
-                    holder.quantity++;
-                }
+                // When the user clicks on the button for an item, play the youtube
+                // video with the associated video ID
 
             }
         });
@@ -195,20 +135,19 @@ public class VideoItemAdapter extends ArrayAdapter<VideoItem> {
 
     private static class ViewHolder{
 
-        int quantity;
-        String productName;
-        double itemPrice;
-        String category;
-        double subtotal;
+        int rank;
+        String title;
+        String author;
+        int year;
+        String videoID;
 
         CheckBox checkBox;
-        Button decrementButton;
-        Button incrementButton;
-        TextView quantityEditText;
-        TextView productNameEditText;
-        TextView unitPriceEditText;
-        TextView categoryEditText;
-        TextView subtotalEditText;
+        EditText rankEditText;
+        TextView titleTextView;
+        TextView authorTextView;
+        TextView yearTextView;
+        TextView videoIDTextView;
+        Button playButton;
 
     }
 

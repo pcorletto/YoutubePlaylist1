@@ -4,9 +4,9 @@
     <string name="app_name">YoutubePlaylist1</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="main_title1">Top 10 YouTube</string>
-    <string name="main_title2">Video PlayList</string>
-    <string name="add_vid_btn">Add Video</string>
+    <string name="main_title1">My YouTube</string>
+    <string name="main_title2">Top 10 Favorites</string>
+    <string name="add_vid_btn">Add a New Video</string>
     <string name="view_playlist_btn">View PlayList</string>
     <string name="store_title">Add a Video Activity</string>
     <string name="video_title_lbl">Video/Song Title</string>
@@ -14,6 +14,12 @@
     <string name="year_lbl">Year Produced</string>
     <string name="video_id_lbl">YouTube Video ID</string>
     <string name="rank_lbl">Your Ranking is (1-10)</string>
-
+    <string name="clear_button">Clear Entries</string>
+    <string name="store_video_btn">Store Video</string>
+    <string name="title_activity_store">StoreActivity</string>
+    <string name="title_activity_display">DisplayActivity</string>
+    <string name="VIDEO_LIST">VIDEO_LIST</string>
+    <string name="ROW_NUMBER">ROW_NUMBER</string>
+    <string name="no_video_items_prompt">There are no video items to display!</string>
 
 </resources>
