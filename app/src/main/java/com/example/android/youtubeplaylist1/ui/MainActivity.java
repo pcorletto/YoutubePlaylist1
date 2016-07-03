@@ -1,6 +1,9 @@
 package com.example.android.youtubeplaylist1.ui;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -9,8 +12,22 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.android.youtubeplaylist1.R;
+import com.example.android.youtubeplaylist1.model.Playlist;
+import com.example.android.youtubeplaylist1.model.VideoDbHelper;
+import com.example.android.youtubeplaylist1.model.VideoItem;
 
 public class MainActivity extends ActionBarActivity {
+
+    // Data structures
+
+    private VideoItem mVideoItem;
+    private int mRowNumber;
+    private Playlist mVideoList = new Playlist();
+
+    Context context;
+    VideoDbHelper videoDbHelper;
+    SQLiteDatabase sqLiteDatabase;
+    Cursor cursor;
 
     private Button storeVideoButton, displayPlaylistButton;
 
@@ -35,26 +52,77 @@ public class MainActivity extends ActionBarActivity {
         });
 
 
-        // When the displayPlaylistButton is clicked, the DisplayActivity is invoked.
+        // Initialize video item
 
-        //displayPlaylistButton.setOnClickListener(new View.OnClickListener() {
-            //@Override
-            //public void onClick(View v) {
+        mVideoItem = new VideoItem();
 
-          //      Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+        //Initialize VideoDbHelper and SQLiteDB
 
-                // Next, I will pass in the array of shopping items, mShoppingList, a "Keeper" object
-                // to DisplayShoppingList.java
+        videoDbHelper = new VideoDbHelper(getApplicationContext());
+        sqLiteDatabase = videoDbHelper.getReadableDatabase();
+
+        cursor = videoDbHelper.getVideoItem(sqLiteDatabase);
+
+        // Initialize the Row Number
+
+        mRowNumber = 0;
+
+        if(cursor.moveToFirst()){
+
+            do{
+
+                String video_ID, title, author;
+                int rank, year;
+
+                // These corresponds to the columns in the videoDbHelper: video_ID (column 0),
+                // rank (col. 1), title (col. 2), author (col. 3), and year (col. 4)
+
+                // See below:
+
+                /*
+                private static final String CREATE_QUERY = "CREATE TABLE " + VideoListDB.NewVideoItem.TABLE_NAME +
+                "(" + VideoListDB.NewVideoItem.VIDEO_ID + " TEXT," +
+                VideoListDB.NewVideoItem.RANK + " INTEGER," +
+                VideoListDB.NewVideoItem.TITLE + " TEXT," +
+                VideoListDB.NewVideoItem.AUTHOR + " TEXT," +
+                VideoListDB.NewVideoItem.YEAR + " INTEGER);"; */
+
+                video_ID = cursor.getString(0);
+                rank = cursor.getInt(1);
+                title = cursor.getString(2);
+                author = cursor.getString(3);
+                year = cursor.getInt(4);
+
+                mVideoItem = new VideoItem(rank, title, author, year, video_ID);
+
+                mVideoList.addVideoItem(mVideoItem, mRowNumber);
+
+                mRowNumber++;
+
+            }
+
+            while(cursor.moveToNext());
+
+        }
+
+        displayPlaylistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, DisplayActivity.class);
+
+                // Next, I will pass in the array of video items, mVideoList, a Playlist object
+                // to DisplayActivity.java
 
 
-              //  intent.putExtra(getString(R.string.ROW_NUMBER), mRowNumber);
+                intent.putExtra(getString(R.string.ROW_NUMBER), mRowNumber);
 
-                //intent.putExtra(getString(R.string.VIDEO_LIST), mShoppingList.mShoppingItems);
+                intent.putExtra(getString(R.string.VIDEO_LIST), mVideoList.mVideoItem);
 
-                //startActivity(intent);
+                startActivity(intent);
 
-            //}
-        //});
+            }
+        });
 
     }
 
