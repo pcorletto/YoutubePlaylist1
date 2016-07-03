@@ -21,5 +21,7 @@
     <string name="VIDEO_LIST">VIDEO_LIST</string>
     <string name="ROW_NUMBER">ROW_NUMBER</string>
     <string name="no_video_items_prompt">There are no video items to display!</string>
+    <string name="return_main_button_label">Return to the Main Screen</string>
+    <string name="delete_selected_items_button">Delete Checked Items</string>
 
 </resources>

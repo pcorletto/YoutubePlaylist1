@@ -82,11 +82,11 @@ public class VideoDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public void deleteVideoItem(String title, SQLiteDatabase sqLiteDatabase){
+    public void deleteVideoItem(String video_ID, SQLiteDatabase sqLiteDatabase){
 
-        String selection = VideoListDB.NewVideoItem.TITLE + " LIKE ?";
+        String selection = VideoListDB.NewVideoItem.VIDEO_ID + " LIKE ?";
 
-        String[] selection_args = {title};
+        String[] selection_args = {video_ID};
 
         sqLiteDatabase.delete(VideoListDB.NewVideoItem.TABLE_NAME, selection, selection_args);
 
