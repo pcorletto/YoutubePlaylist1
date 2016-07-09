@@ -1,6 +1,7 @@
 package com.example.android.youtubeplaylist1.model;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.youtubeplaylist1.R;
+import com.example.android.youtubeplaylist1.ui.PlayVideoActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -105,7 +107,19 @@ public class VideoItemAdapter extends ArrayAdapter<VideoItem> {
                 // When the user clicks on the button for an item, play the youtube
                 // video with the associated video ID
 
+                // Send the videoID for this video item via Intent to another
+                // activity called PlayVideoActivity, which contains
+                // a YouTube player
+
+                Intent intent = new Intent(mContext, PlayVideoActivity.class);
+
+                intent.putExtra("YOUTUBE_VIDEO_ID", holder.videoID);
+
+                mContext.startActivity(intent);
+
             }
+
+
         });
 
         holder.checkBox.setFocusable(false);

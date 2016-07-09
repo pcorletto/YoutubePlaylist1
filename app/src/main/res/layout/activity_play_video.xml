@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context="com.example.android.youtubeplaylist1.ui.PlayVideoActivity">
+
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        class="com.google.android.youtube.player.YouTubePlayerView"
+        android:id="@+id/youtube_player_view"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Play Video"
+        android:id="@+id/playButton"
+        android:layout_below="@+id/youtube_player_view"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RETURN TO PLAYLIST"
+        android:id="@+id/returnButton"
+        android:layout_below="@+id/playButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+</RelativeLayout>

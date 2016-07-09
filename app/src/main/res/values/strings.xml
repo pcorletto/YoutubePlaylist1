@@ -13,6 +13,7 @@
     <string name="author_lbl">Author/Singer</string>
     <string name="year_lbl">Year Produced</string>
     <string name="video_id_lbl">YouTube Video ID</string>
+    <string name="YOUTUBE_VIDEO_ID"></string>
     <string name="rank_lbl">Your Ranking is (1-10)</string>
     <string name="clear_button">Clear Entries</string>
     <string name="store_video_btn">Store Video</string>
@@ -23,5 +24,6 @@
     <string name="no_video_items_prompt">There are no video items to display!</string>
     <string name="return_main_button_label">Return to the Main Screen</string>
     <string name="delete_selected_items_button">Delete Checked Items</string>
+    <string name="title_activity_play_video">PlayVideoActivity</string>
 
 </resources>
